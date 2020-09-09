@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -10,6 +13,7 @@ dataset = pd.read_csv('Position_Salaries.csv')
 X = dataset.iloc[:, 1:-1].values
 y = dataset.iloc[:, -1].values
 
+
 # reshaping y to be in the same format as X
 y = y.reshape([len(y), 1])
 
@@ -21,10 +25,11 @@ y = sc_y.fit_transform(y)
 
 # training SVR model
 regressor = SVR(kernel='rbf')
-regressor.fit(X, y)
+regressor.fit(X,y)
 
 # predicting the values
 sc_y.inverse_transform(regressor.predict(sc_X.transform([[6.5]])))
+
 
 # visualising the SVR results
 plt.scatter(sc_X.inverse_transform(X), sc_y.inverse_transform(y), color='red')
