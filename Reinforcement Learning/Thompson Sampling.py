@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-import math
+import random
 
 dataset = pd.read_csv('Ads_CTR_Optimisation.csv')
 
@@ -9,27 +9,24 @@ dataset = pd.read_csv('Ads_CTR_Optimisation.csv')
 N = len(dataset)
 d = 10
 ads_selected = []
-numbers_of_selections = [0] * d
-sums_of_rewards = [0] * d
+number_of_rewards_1 = [0] * d
+number_of_rewards_0 = [0] * d
 total_reward = 0
 
 for n in range(0, N):
     ad = 0
-    max_upper_bound = 0
+    max_random = 0
     for i in range(0, d):
-        if numbers_of_selections[i] > 0:
-            avg_reward = sums_of_rewards[i] / numbers_of_selections[i]
-            delta_i = math.sqrt(3/2 * math.log(n + 1) / numbers_of_selections[i])
-            upper_bound = avg_reward + delta_i
-        else:
-            upper_bound = 1e400
-        if upper_bound > max_upper_bound:
-            max_upper_bound = upper_bound
+        random_beta = random.betavariate(number_of_rewards_1[i] + 1, number_of_rewards_0[i] + 1)
+        if random_beta > max_random:
+            max_random = random_beta
             ad = i
     ads_selected.append(ad)
-    numbers_of_selections[ad] += 1
     reward = dataset.values[n, ad]
-    sums_of_rewards[ad] += reward
+    if reward == 1:
+        number_of_rewards_1[ad] += 1
+    else:
+        number_of_rewards_0[ad] += 1
     total_reward += reward
 
 # plotting
