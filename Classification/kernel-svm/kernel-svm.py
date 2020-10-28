@@ -33,8 +33,6 @@ print('confusion matrix : ', confusion_matrix(y_test, y_pred))
 print('accuracy score : ', accuracy_score(y_test, y_pred))
 
 
-
-
 # Visualising the Training set results
 # -- *ONLY USEFUL WHEN WE HAVE TO DEAL WITH TWO FEATURES* --
 from matplotlib.colors import ListedColormap
