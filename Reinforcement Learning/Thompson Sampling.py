@@ -6,7 +6,7 @@ dataset = pd.read_csv('Ads_CTR_Optimisation.csv')
 
 # N is the total number of users (in our dataset rows)
 # is the total cases to compare (in this dataset the total number of ads)
-N = len(dataset)
+N = 1000
 d = 10
 ads_selected = []
 number_of_rewards_1 = [0] * d
