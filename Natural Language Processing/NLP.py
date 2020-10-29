@@ -37,7 +37,7 @@ X = cv.fit_transform(corpus).toarray()
 y = dataset.iloc[:, -1].values
 
 # splitting the the dataset into training set and test set
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1)
 
 # Training the kernel svm model to the training set
 classifier = SVC(kernel='rbf', random_state=0)
@@ -50,10 +50,4 @@ print(np.concatenate((y_pred.reshape(len(y_pred), 1), y_test.reshape(len(y_test)
 # Making the confusion matrix
 print('confusion matrix : ', confusion_matrix(y_test, y_pred))
 print('accuracy score : ', accuracy_score(y_test, y_pred))
-
-
-
-
-
-
 
